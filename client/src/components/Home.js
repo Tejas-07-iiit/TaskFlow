@@ -18,24 +18,24 @@ const Home = () => {
   if (activeComponent !== "home") return null;
 
   return (
-    <div className="home-page" style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+    <div className="page-wrapper home-page">
       <Navbar user={user} />
 
-      <div className="home-container" style={{ flex: 1 }}>
-        <div className="home-card" style={{ textAlign: "center", padding: "60px 20px" }}>
-          <h2 className="home-title" style={{ fontSize: "36px", marginBottom: "20px" }}>
+      <div className="home-container flex-grow-1">
+        <div className="home-content-card">
+          <h2 className="home-hero-title">
             Welcome to Task Manager, {user?.name || "User"}
           </h2>
-          <p className="home-subtitle" style={{ maxWidth: "700px", margin: "0 auto 30px", fontSize: "18px", lineHeight: "1.6" }}>
+          <p className="home-hero-subtitle">
             Task Manager is a minimalist and powerful tool designed to help you organize your daily life.
             Stay productive, track your goals, and manage your time efficiently with ease.
             Use the menu above to start managing your tasks.
           </p>
-          <div style={{ marginTop: "40px" }}>
+          <div className="home-hero-img-wrapper">
             <img
               src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&q=80&w=800"
               alt="Productivity"
-              style={{ width: "100%", maxWidth: "600px", borderRadius: "8px", boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}
+              className="home-hero-img"
             />
           </div>
         </div>

@@ -1271,3 +1271,167 @@ body {
     color: #888;
     font-size: 15px;
 }
+
+/* ===== LAYOUT UTILITIES ===== */
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.flex-grow-1 {
+    flex: 1;
+}
+
+.p-20 {
+    padding: 20px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.m-auto {
+    margin: 0 auto;
+}
+
+/* ===== ADMIN DASHBOARD STYLES ===== */
+.admin-user-card {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    padding: 24px;
+    margin-bottom: 32px;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.admin-user-header {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 12px;
+}
+
+.admin-user-header h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+}
+
+.admin-user-email {
+    color: #666;
+    font-size: 14px;
+    margin: 4px 0;
+}
+
+.admin-user-tasks h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.admin-task-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+}
+
+.admin-task-small-card {
+    padding: 16px;
+    border: 1px solid #eee;
+    background-color: #fafafa;
+    border-radius: 4px;
+    transition: border-color 0.2s ease;
+}
+
+.admin-task-small-card:hover {
+    border-color: #ddd;
+}
+
+.admin-task-small-card h5 {
+    margin: 0 0 6px 0;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.admin-task-small-card p {
+    margin: 0;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.4;
+}
+
+.status-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    margin-top: 10px;
+    border: 1px solid;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-badge-wrapper {
+    margin-top: 8px;
+}
+
+.status-completed {
+    background-color: #f0fff4;
+    color: #2da44e;
+    border-color: #c6f6d5;
+}
+
+.status-active {
+    background-color: #fffaf0;
+    color: #d4a017;
+    border-color: #feebc8;
+}
+
+/* ===== HOME PAGE ENHANCEMENTS ===== */
+.home-content-card {
+    text-align: center;
+    padding: 60px 40px;
+}
+
+.home-hero-title {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+}
+
+.home-hero-subtitle {
+    max-width: 720px;
+    margin: 0 auto 40px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #666;
+}
+
+.home-hero-img-wrapper {
+    margin-top: 48px;
+}
+
+.home-hero-img {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== COMPONENT HELPERS ===== */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.header-section {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.text-muted {
+    color: #666 !important;
+}

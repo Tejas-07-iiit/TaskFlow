@@ -91,7 +91,7 @@ exports.completeTask = async (req, res) => {
             });
         }
 
-        // According to new requirement: mark as complete instead of delete
+        // mark as complete instead of delete
         await Task.findByIdAndUpdate(id, { completed: true });
 
         res.status(200).json({

@@ -13,7 +13,7 @@ const Navbar = ({ user }) => {
     <nav className="navbar">
       <div className="navbar-container">
 
-        <div className="navbar-brand" onClick={() => dispatch(setActiveComponent("home"))} style={{ cursor: "pointer" }}>
+        <div className="navbar-brand cursor-pointer" onClick={() => dispatch(setActiveComponent("home"))}>
           <h1>Task Manager</h1>
         </div>
 

@@ -110,10 +110,21 @@ const Task = () => {
     const completedTasks = tasks.filter(task => task.completed);
 
     return (
-        <div className="home-page" style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+        <div className="page-wrapper home-page">
             <Navbar user={user} />
 
-            <div className="home-container" style={{ flex: 1 }}>
+            <div className="home-container flex-grow-1">
+
+                {/* Header Section */}
+                <div className="header-section">
+                    <h2 className="home-title">Task Management</h2>
+                    <button
+                        className="navbar-button"
+                        onClick={() => dispatch(setActiveComponent("home"))}
+                    >
+                        Back to Home
+                    </button>
+                </div>
 
                 {/* Task Creation Form */}
                 <div className="task-form-card">
@@ -142,7 +153,7 @@ const Task = () => {
                             />
                         </div>
                         <div className="task-btn-row">
-                            <button type="submit" className="auth-button" style={{ marginTop: 0, width: "auto" }} disabled={loading}>
+                            <button type="submit" className="auth-button" disabled={loading}>
                                 {loading ? "Processing..." : (editingId ? "Update Task" : "Create Task")}
                             </button>
                             {editingId && (
@@ -201,12 +212,12 @@ const Task = () => {
 
                     {/* Completed Tasks Section */}
                     {completedTasks.length > 0 && (
-                        <div className="task-list" style={{ marginTop: "40px" }}>
-                            <h3 className="task-form-title" style={{ color: "#666" }}>Completed Tasks ({completedTasks.length})</h3>
+                        <div className="task-list">
+                            <h3 className="task-form-title text-muted">Completed Tasks ({completedTasks.length})</h3>
                             {completedTasks.map((task) => (
-                                <div key={task._id} className="task-item-card" style={{ opacity: 0.7, backgroundColor: "#f9f9f9" }}>
+                                <div key={task._id} className="task-item-card completed">
                                     <div className="task-content">
-                                        <h4 className="task-item-title" style={{ textDecoration: "line-through" }}>{task.title}</h4>
+                                        <h4 className="task-item-title completed">{task.title}</h4>
                                         <p className="task-item-desc">{task.description}</p>
                                     </div>
                                     <div className="task-item-actions">
