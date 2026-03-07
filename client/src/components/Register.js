@@ -3,7 +3,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setActiveComponent } from "../redux/componentSlice";
 
-const Register = ({ onSuccess }) => {
+const Register = () => {
 
     const dispatch = useDispatch();
     const activeComponent = useSelector(
@@ -20,13 +20,9 @@ const Register = ({ onSuccess }) => {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [success, setSuccess] = useState("");
 
     const isValid = useMemo(() => {
         return (
-            form.name.trim() &&
-            form.email.trim() &&
-            form.password.trim().length >= 6 &&
             form.password === form.confirmPassword
         );
     }, [form]);
@@ -34,7 +30,6 @@ const Register = ({ onSuccess }) => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setForm((prev) => ({ ...prev, [name]: value }));
-        setSuccess("");
     };
 
     const handleSubmit = async (e) => {
@@ -44,27 +39,21 @@ const Register = ({ onSuccess }) => {
 
         try {
             setLoading(true);
-            setSuccess("");
 
             const payload = {
                 name: form.name,
                 email: form.email,
                 password: form.password,
             };
-
+            
             const { data } = await axios.post(
-                "http://localhost:5000/register",
+                "http://localhost:5000/api/register",
                 payload,
                 {
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
                     withCredentials: true,
                 }
             );
 
-            setSuccess("Register successful");
-            onSuccess?.(data);
 
         } catch (err) {
             console.log(
@@ -171,12 +160,11 @@ const Register = ({ onSuccess }) => {
                         </div>
                     </div>
 
-                    {success ? <p className="auth-success">{success}</p> : null}
-
                     <button
                         type="submit"
                         disabled={loading || !isValid}
                         className="auth-button"
+                        onClick={handleSubmit}
                     >
                         {loading ? "Creating account..." : "Register"}
                     </button>

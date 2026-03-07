@@ -24,7 +24,7 @@ const Login = () => {
             setLoading(true);
 
             const { data } = await axios.post(
-                "http://localhost:5000/login",
+                "http://localhost:5000/api/login",
                 form,
                 {
                     headers: {
@@ -36,10 +36,14 @@ const Login = () => {
 
             if (data.success) {
                 console.log("Login successfully");
+                localStorage.setItem("user", JSON.stringify(data.user));
+                dispatch(setActiveComponent("home"))
             }
 
         } catch (err) {
-            console.log(err.response?.data?.message || err.message || "Something went wrong");
+            const errorMsg = err.response?.data?.message || err.message || "Something went wrong";
+            console.log(errorMsg);
+            alert(errorMsg);
         } finally {
             setLoading(false);
         }

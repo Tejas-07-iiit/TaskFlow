@@ -37,15 +37,17 @@ router.post("/login", async (req, res) => {
             {
                 id: user._id,
                 email: user.email,
+                role: user.role,
             },
             process.env.JWT_SECRET,
-            { expiresIn: "15m" }
+            { expiresIn: "7d" }
         );
 
         res.cookie("accessToken", accessToken, {
             httpOnly: true,
             secure: false, // set true in production with HTTPS
-            sameSite: "lax"
+            sameSite: "lax",
+            maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
         });
 
         return res.status(200).json({
@@ -56,6 +58,7 @@ router.post("/login", async (req, res) => {
                 id: user._id,
                 name: user.name,
                 email: user.email,
+                role: user.role,
             },
         });
     } catch (error) {
