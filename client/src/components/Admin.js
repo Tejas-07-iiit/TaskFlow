@@ -32,7 +32,7 @@ const Admin = () => {
     const fetchAdminData = async () => {
         try {
             setLoading(true);
-            const { data } = await axios.get("http://localhost:5000/api/admin/users-tasks", {
+            const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/api/admin/users-tasks`, {
                 withCredentials: true,
             });
             if (data.success) {

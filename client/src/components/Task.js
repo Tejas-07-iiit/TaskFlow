@@ -30,7 +30,7 @@ const Task = () => {
 
     const fetchTasks = async () => {
         try {
-            const { data } = await axios.get("http://localhost:5000/api/tasks", {
+            const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/api/tasks`, {
                 withCredentials: true,
             });
             if (data.success) {
@@ -57,12 +57,12 @@ const Task = () => {
         try {
             setLoading(true);
             if (editingId) {
-                await axios.put(`http://localhost:5000/api/tasks/${editingId}`, taskForm, {
+                await axios.put(`${process.env.REACT_APP_API_URL}/api/tasks/${editingId}`, taskForm, {
                     withCredentials: true,
                 });
                 setEditingId(null);
             } else {
-                await axios.post("http://localhost:5000/api/tasks", taskForm, {
+                await axios.post(`${process.env.REACT_APP_API_URL}/api/tasks`, taskForm, {
                     withCredentials: true,
                 });
             }
@@ -84,7 +84,7 @@ const Task = () => {
     const handleDelete = async (id) => {
         if (!window.confirm("Are you sure you want to delete this task?")) return;
         try {
-            await axios.delete(`http://localhost:5000/api/tasks/${id}`, {
+            await axios.delete(`${process.env.REACT_APP_API_URL}/api/tasks/${id}`, {
                 withCredentials: true,
             });
             fetchTasks();
@@ -95,7 +95,7 @@ const Task = () => {
 
     const handleComplete = async (id) => {
         try {
-            await axios.patch(`http://localhost:5000/api/tasks/${id}/complete`, {}, {
+            await axios.patch(`${process.env.REACT_APP_API_URL}/api/tasks/${id}/complete`, {}, {
                 withCredentials: true,
             });
             fetchTasks();

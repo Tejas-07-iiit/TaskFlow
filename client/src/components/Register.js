@@ -45,9 +45,9 @@ const Register = () => {
                 email: form.email,
                 password: form.password,
             };
-            
+
             const { data } = await axios.post(
-                "http://localhost:5000/api/register",
+                `${process.env.REACT_APP_API_URL}/api/register`,
                 payload,
                 {
                     withCredentials: true,
