@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import Navbar from "./Navbar";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+import { showNotification } from "../redux/notificationSlice";
 
 const Admin = () => {
     const activeComponent = useSelector(
@@ -11,6 +12,7 @@ const Admin = () => {
     const [usersWithTasks, setUsersWithTasks] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const dispatch = useDispatch();
 
     const getUser = () => {
         try {
@@ -39,8 +41,9 @@ const Admin = () => {
                 setUsersWithTasks(data.users);
             }
         } catch (err) {
-            console.error("Error fetching admin data:", err);
-            setError("Failed to fetch admin data. Ensure you have admin privileges.");
+            const errorMsg = "Failed to fetch admin data. Ensure you have admin privileges.";
+            dispatch(showNotification({ message: errorMsg, type: "error" }));
+            setError(errorMsg);
         }
     };
 

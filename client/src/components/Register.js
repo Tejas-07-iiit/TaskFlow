@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setActiveComponent } from "../redux/componentSlice";
+import { showNotification } from "../redux/notificationSlice";
 
 const Register = () => {
 
@@ -54,12 +55,14 @@ const Register = () => {
                 }
             );
 
+            if (data.success) {
+                dispatch(showNotification({ message: "Registration successful!", type: "success" }));
+                dispatch(setActiveComponent("login"));
+            }
 
         } catch (err) {
-            console.log(
-                "Register failed:",
-                err.response?.data?.message || err.message
-            );
+            const errorMsg = err.response?.data?.message || err.message || "Registration failed";
+            dispatch(showNotification({ message: errorMsg, type: "error" }));
         } finally {
             setLoading(false);
         }

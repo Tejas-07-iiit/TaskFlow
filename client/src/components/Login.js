@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setActiveComponent } from "../redux/componentSlice";
+import { showNotification } from "../redux/notificationSlice";
 
 const Login = () => {
 
@@ -35,15 +36,14 @@ const Login = () => {
             );
 
             if (data.success) {
-                console.log("Login successfully");
+                dispatch(showNotification({ message: "Login successful!", type: "success" }));
                 localStorage.setItem("user", JSON.stringify(data.user));
                 dispatch(setActiveComponent("home"))
             }
 
         } catch (err) {
             const errorMsg = err.response?.data?.message || err.message || "Something went wrong";
-            console.log(errorMsg);
-            alert(errorMsg);
+            dispatch(showNotification({ message: errorMsg, type: "error" }));
         } finally {
             setLoading(false);
         }

@@ -8,6 +8,7 @@ import Register from './components/Register';
 import Home from './components/Home';
 import Task from './components/Task';
 import Admin from './components/Admin';
+import Notification from './components/Notification';
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ function App() {
       <Profile />
       <Task />
       <Admin />
+      <Notification />
     </>
   );
 }

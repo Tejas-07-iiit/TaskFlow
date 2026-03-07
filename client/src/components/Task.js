@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { setActiveComponent } from "../redux/componentSlice";
+import { showNotification } from "../redux/notificationSlice";
 
 const Task = () => {
     const activeComponent = useSelector(
@@ -37,7 +38,7 @@ const Task = () => {
                 setTasks(data.tasks);
             }
         } catch (err) {
-            console.error("Error fetching tasks:", err);
+            dispatch(showNotification({ message: "Error fetching tasks", type: "error" }));
             if (err.response?.status === 401) {
                 localStorage.removeItem("user");
                 dispatch(setActiveComponent("login"));
@@ -68,8 +69,12 @@ const Task = () => {
             }
             setTaskForm({ title: "", description: "" });
             fetchTasks();
+            dispatch(showNotification({
+                message: editingId ? "Task updated successfully!" : "Task added successfully!",
+                type: "success"
+            }));
         } catch (err) {
-            console.error("Error saving task:", err);
+            dispatch(showNotification({ message: "Error saving task", type: "error" }));
         } finally {
             setLoading(false);
         }
@@ -82,14 +87,14 @@ const Task = () => {
     };
 
     const handleDelete = async (id) => {
-        if (!window.confirm("Are you sure you want to delete this task?")) return;
         try {
             await axios.delete(`${process.env.REACT_APP_API_URL}/api/tasks/${id}`, {
                 withCredentials: true,
             });
             fetchTasks();
+            dispatch(showNotification({ message: "Task deleted successfully!", type: "success" }));
         } catch (err) {
-            console.error("Error deleting task:", err);
+            dispatch(showNotification({ message: "Error deleting task", type: "error" }));
         }
     };
 
@@ -99,8 +104,9 @@ const Task = () => {
                 withCredentials: true,
             });
             fetchTasks();
+            dispatch(showNotification({ message: "Task status updated!", type: "success" }));
         } catch (err) {
-            console.error("Error completing task:", err);
+            dispatch(showNotification({ message: "Error updating task", type: "error" }));
         }
     };
 

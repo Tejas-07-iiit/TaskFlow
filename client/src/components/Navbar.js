@@ -1,11 +1,13 @@
 import { useDispatch } from "react-redux";
 import { setActiveComponent } from "../redux/componentSlice";
+import { showNotification } from "../redux/notificationSlice";
 
 const Navbar = ({ user }) => {
   const dispatch = useDispatch()
 
   const handleLogout = () => {
     localStorage.removeItem("user");
+    dispatch(showNotification({ message: "Logged out successfully", type: "info" }));
     dispatch(setActiveComponent("login"));
   };
 
