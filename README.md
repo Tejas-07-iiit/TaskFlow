@@ -122,12 +122,12 @@ taskflow/
 ├── client/              # React frontend
 │   ├── public/          # Static assets
 │   └── src/             # Source files
-│       ├── __tests__/   # Frontend test cases
+│       ├── tests/       # Frontend test cases
 │       ├── components/  # React components
 │       ├── redux/       # Redux slices and store
 │       └── utils/       # Utility functions
 ├── server/              # Node.js/Express backend
-│   ├── __tests__/       # Backend API tests
+│   ├── tests/           # Backend API tests
 │   ├── config/          # Database configuration
 │   ├── controller/      # API logic controllers
 │   ├── middleware/      # Authentication middleware
@@ -135,9 +135,6 @@ taskflow/
 │   └── routes/          # Express routes
 └── README.md            # Project documentation
 ```
-
-## 📸 Screenshots
-*(Add screenshots of your application here)*
 
 ---
 Developed with ❤️ by Tejas Ambaliya
